@@ -1,236 +1,127 @@
 import json
 import os
-import datetimeE
+import datetime
 Bol=True
 while Bol==True:
-    with open("Ventas.json", encoding="utf-8") as ventas:# VENTAS
-        ventas=json.load(ventas)
+    with open("Ventas.json", encoding="utf-8") as ventas:
+        jventas=json.load(ventas)
     with open("Compra.json", encoding="utf-8") as compras:
-        compras=json.load(compras)
+        jcompras=json.load(compras)
     with open("Medicamentos.json", encoding="utf-8") as file: 
-        medicamentos=json.load(file)
+        jmedicamentos=json.load(file)
     with open("Empleados.json", encoding="utf-8") as empleados: 
-        empleados=json.load(empleados)
+        jempleados=json.load(empleados)
     with open("Pacientes.json", encoding="utf-8") as pacientes: 
-        pacientes=json.load(pacientes)        
+        jpacientes=json.load(pacientes)        
     with open("Proveedores.json", encoding="utf-8") as proveedores: 
-        proveedores=json.load(proveedores)   
+        jproveedores=json.load(proveedores)   
     os.system("clear")
     print("---------------\n1).Compra\n2).Vender\n3).Generar Informes\n0).Salir\n---------------")
     Opcion1=input(str("Ingrese un número para ir a la opcion deseada"))
-    if Opcion1=="1":
-        NomProovedor=str(input("Ingrese el nombre del proveedor"))
-        bol1=True
-        while bol1==True:
-            os.system("clear")
-            print("---------------\n1).Panaderia\n2).Pasteleria\n3).Bebidas\n4).Promociones\n0).Salir\n---------------")
-            Opcion2=input(str("Ingrese un número para ir a la opcion deseada"))
-            if Opcion2=="1":
-                os.system("clear")
-                print("---------------Panaderia---------------")
-                for i in PrePan["Panaderia"]:
-                    print(i, "Precio:",PrePan["Panaderia"][i])
-                Comparador=input(str("Ingrese el nombre del pan a comprar: "))
-                Contador=0
-                for y in medicamentos["Panaderia"]:
-                    Contador=Contador+1
-                    if Comparador == y:
-                        Cant=int(input("¿Que cantidad deseas comprar? "))
-                        PPan=Cant*PrePan["Panaderia"][y]
-                        Nombre=str(input("Nombre del comprador: "))
-                        Direccion=str(input("Direccion del comprador: "))
-                        Fecha=str(datetime.datetime.now())
-                        Ventas[0]["Personas"].append({
-                            "Fecha":Fecha,
-                            "Nombre":Nombre,
-                            "Direccion":Direccion,
-                            "Empleado":NomEmpleado,
-                            "Producto":[
-                                {
-                                    "NombreP":y,
-                                    "Cantidad":Cant,
-                                    "PrecioP":PPan
-                                }
-                            ]
-                        })
-                        with open("DatosVentas.json", "w") as file:
-                            json.dump(Ventas,file)   
-                        input("Producto añadido al carrito, presione Enter para continuar")  
-                    elif Contador < 11:
-                        os.system("clear")
-                    else:
-                        print("Producto no existente, procura escribir el nombre del producto correctamente")
-                        input("Presiona Enter para continuar")
-            elif Opcion2=="2":
-                os.system("clear")
-                print("---------------Pasteleria---------------")
-                for i in PrePan["Pasteleria"]:
-                    print(i, "Precio:",PrePan["Pasteleria"][i])
-                Comparador=input(str("Ingrese el nombre del pan a comprar: "))
-                Contador=0
-                for y in PrePan["Pasteleria"]:
-                    Contador=Contador+1
-                    if Comparador == y:
-                        Cant=int(input("¿Que cantidad deseas comprar? "))
-                        PPan=Cant*PrePan["Pasteleria"][y]
-                        Nombre=str(input("Nombre del comprador: "))
-                        Direccion=str(input("Direccion del comprador: "))
-                        Fecha=str(datetime.datetime.now())
-                        Ventas[0]["Personas"].append({
-                            "Fecha":Fecha,
-                            "Nombre":Nombre,
-                            "Direccion":Direccion,
-                            "Empleado":NomEmpleado,
-                            "Producto":[
-                                {
-                                    "NombreP":y,
-                                    "Cantidad":Cant,
-                                    "PrecioP":PPan
-                                }
-                            ]
-                        })
-                        with open("DatosVentas.json", "w") as file:
-                            json.dump(Ventas,file)    
-                        input("Producto añadido al carrito, presione Enter para continuar")
-                    elif Contador < 11:
-                        os.system("clear")
-                    else:
-                        print("Producto no existente, procura escribir el nombre del producto correctamente")
-                        input("Presiona Enter para continuar")
-            elif Opcion2=="3":
-                os.system("clear")
-                print("---------------Bebidas---------------")
-                for i in PrePan["Bebidas"]:
-                    print(i, "Precio:",PrePan["Bebidas"][i])
-                Comparador=input(str("Ingrese el nombre del pan a comprar: "))
-                Contador=0
-                for y in PrePan["Bebidas"]:
-                    Contador=Contador+1
-                    if Comparador == y:
-                        Cant=int(input("¿Que cantidad deseas comprar? "))
-                        PPan=Cant*PrePan["Bebidas"][y]
-                        Nombre=str(input("Nombre del comprador: "))
-                        Direccion=str(input("Direccion del comprador: "))
-                        Fecha=str(datetime.datetime.now())  
-                        Ventas[0]["Personas"].append({
-                            "Fecha":Fecha,
-                            "Nombre":Nombre,
-                            "Direccion":Direccion,
-                            "Empleado":NomEmpleado,
-                            "Producto":[
-                                {
-                                    "NombreP":y,
-                                    "Cantidad":Cant,
-                                    "PrecioP":PPan
-                                }
-                            ]
-                        })
-                        with open("DatosVentas.json", "w") as file:
-                            json.dump(Ventas,file)
-                        
-                        input("Producto añadido al carrito, presione Enter para continuar")
-                    elif Contador < 10:
-                        os.system("clear")
-                    else:
-                        print("Producto no existente, procura escribir el nombre del producto correctamente")
-                        input("Presiona Enter para continuar")
-            elif Opcion2=="0":
-                os.system("clear")
-                print("---------------Apartado de promociones---------------")
-                for i in PrePan["Apartado de promociones"]:
-                    print(i, "Precio:",PrePan["Apartado de promociones"][i])
-                Comparador=input(str("Ingrese el nombre del pan a comprar: "))
-                Contador=0
-                for y in PrePan["Apartado de promociones"]:
-                    Contador=Contador+1
-                    if Comparador == y:
-                        Cant=int(input("¿Que cantidad deseas comprar? "))
-                        PPan=Cant*PrePan["Apartado de promociones"][y]
-                        Nombre=str(input("Nombre del comprador: "))
-                        Direccion=str(input("Direccion del comprador: "))
-                        Fecha=str(datetime.datetime.now())
-                        Ventas[0]["Personas"].append({
-                            "Fecha":Fecha,
-                            "Nombre":Nombre,
-                            "Direccion":Direccion,
-                            "Empleado":NomEmpleado,
-                            "Producto":[
-                                {
-                                    "NombreP":y,
-                                    "Cantidad":Cant,
-                                    "PrecioP":PPan
-                                }
-                            ]
-                        })
-                        with open("DatosVentas.json", "w") as file:
-                            json.dump(Ventas,file)
-                        input("Producto añadido al carrito, presione Enter para continuar")
-                    elif Contador < 10:
-                        os.system("clear")
-                    else:
-                        print("Producto no existente, procura escribir el nombre del producto correctamente")
-                        input("Presiona Enter para continuar")
-            elif Opcion2=="0":
-                os.system("clear")
-                print("======Saliendo======")
-                input("Presione Enter para continuar")
-                bol1=False
-    elif Opcion1=="2":
-        bol1=True
-        while bol1==True:
-            os.system("clear")
-            print("---------------\n1).Comprar\n2).Salir\n---------------")
-            Opcion2=input(str("Ingrese un numero para ir a la opcion deseada: "))
-            if Opcion2=="1":
-                NombreProovedor=str(input("Nombre del proovedor al que se le comprara: "))
-                NumeroProovedor=int(input("Numero del proovedor al que desea comprar: "))
-                NombreProducto=str(input("Que producto desea comprar: "))
-                CantProducto=int(input("Cantidad del producto que desea comprar: "))
-                PrecioProducto=int(input("Precio del producto que desea comprar: "))
-                PrecioTotal=PrecioProducto*CantProducto
+
+    if Opcion1=="1":#___________________Compras_____________________
+        contador=0
+        for i in jmedicamentos:
+            contador+=1
+            print(contador,".", i["nombre"])
+        comp=str(input("ingresa el nombre del producto a comprar:"))
+        for a in jmedicamentos:
+            if comp == a ["nombre"]:
+                print("Tu producto elegido es: ",a)
+                Cant=int(input("Cuantas unidades deseas comprar?"))
+                NomProveedor=str(input("Ingresa el nombre del proveedor"))
+                ContProveedor=str(input("Ingresa el contacto del proveedor"))
+                PreTotal=Cant*a["precio"]
                 Fecha=str(datetime.datetime.now())
-                Compras[0]["Personas"].append(
+
+                jcompras.append(
                     {
-                        "Fecha": Fecha,
-                        "Nombre":NombreProovedor,
-                        "Numero":NumeroProovedor,
-                        "Producto":NombreProducto,
-                        "Cantidad":CantProducto,
-                        "Precio Unitario":PrecioProducto,
-                        "Precio Total":PrecioTotal
+                        "fechaCompra": Fecha,
+                        "proveedor": {
+                             "nombre": NomProveedor,
+                            "contacto": ContProveedor
+                        },
+                        "medicamentosComprados": [
+                            {
+                                "nombreMedicamento": a,
+                                "cantidadComprada": Cant,
+                                "precioCompra":PreTotal
+                            }
+                        ]
                     }
                 )
-                with open("DatosCompra.json", "w") as files:
-                    json.dump(Compras,files)
-            elif Opcion2=="2":
-                os.system("clear")
-                print("---------------Saliendo---------------")
-                input("Presione Enter para continuar")
-                bol1=False
-    elif Opcion1=="3":
-        bol2=True
-        while bol2==True:
-            os.system("clear")
-            print("---------------\n1).Registros ventas\n2).Registros Compras\n3).Salir\n---------------")         
-            Opcion2=input(str("Ingrese un numero para ir a la opcion deseada: "))
-            if Opcion2=="1":
-                os.system("clear")
-                for i in Ventas[0]["Personas"]:
-                    print("---------------Ventas---------------")
-                    print("Fecha de compra: ",i["Fecha"],"\nDireccion: ",i["Nombre"],"\nEmpleado: ",i["Empleado"],"\nProducto: ",i["Producto"][0]["NombreP"],"\nCantidad: ",i["Producto"][0]["Cantidad"],"\nPrecio Venta : ",i["Producto"][0]["PrecioP"])
-                    print("-------------------------------------------------")
-                input("Presione Enter para continuar")    
-            elif Opcion2=="2":
-                os.system("clear")
-                for i in Compras[0]["Personas"]:
-                    print("---------------Compras---------------")
-                    print("Fecha de compra: ",i["Fecha"],"\nNombre del proovedor: ",i["Nombre"],"\nProducto: ",i["Producto"],"\nCantidad: ",i["Cantidad"],"\nPrecio Total: ",i["Precio Total"])
-                    print("-------------------------------------------------")
-                input("Presione Enter para continuar")
-            elif Opcion2=="3":
-                os.system("clear")
-                print("---------------Saliendo--------------")
-                input("Presione Enter para continuar")
-                bol2=False
-    elif Opcion1=="0":
-        Bol=False
+
+                with open("Compra.json", "w") as CopCompra:
+                    json.dump(compras,CopCompra)
+
+        input("Precione enter")
+
+    elif Opcion1=="2":#________________Vender_________________
+        NomEmpleado=str(input("ingrese el nombre del empleado"))
+        compEmple=0
+        for b in jempleados:
+            compEmple=+1
+            if compEmple == b["nombre"]:
+                contador=0
+                for c in jmedicamentos:
+                    contador+=1
+                    print(contador,".", c["nombre"])
+                comp=str(input("Ingresa el nombre del producto que se vendera"))
+                for d in jmedicamentos:
+                    if comp == d["nombre"]:
+                        print("el producto que se vendera sera:")
+                        Cant=int(input("Ingrresa la cantidad que se vendera"))
+                        NomPaciente=str(input("Ingresa el nombre del paciente"))
+                        DirecPaciente=str(input("Ingresa la direccion del paciente"))
+                        PreTotal=Cant*d["precio"] 
+                        Fecha=str(datetime.datetime.now())
+
+                        jventas.append(
+                            {
+                                "fechaVenta": "2023-01-10T00:00:00Z",
+                                "paciente": 
+                                {
+                                    "nombre": "Juan",
+                                    "direccion": "Calle 123"
+                                },
+                                "empleado": 
+                                {
+                                    "nombre": "Pedro",
+                                    "cargo": "Vendedor"
+                                },
+                                "medicamentosVendidos": 
+                                [
+                                    {
+                                        "nombreMedicamento": "Paracetamol",
+                                        "cantidadVendida": 2,
+                                        "precio": 20
+                                    }
+                                ]
+                            }
+                        )
+                        with open("Ventas.json", "w") as CopVentas:
+                            json.dump(ventas,CopVentas)
+    elif Opcion1 == "3":
+        boleano=True
+        os.system("cls")
+        while boleano == True:
+            print("________________\n1).Informes de compras. \n2).Informes de ventas. \n3).Salir \n______________________")
+            Opcion2=str(input("Ingrese un número para ir a la opcion deseada"))
+            
+            if Opcion2 == "1":
+                for e in jcompras:
+                    print("Fecha: ",e["fechaCompra"], "Proveedor: ",e["proveedor"]["nombre"],e["medicamentosComprados"][0]["nombreMedicamento"])
+
+            elif Opcion2 == "2":
+                for e in jventas:
+                    print("Fecha: ",e["fechaVenta"],"Nombre del Paciente: ",e["paciente"]["nombre"],"Venta: ",e["medicamentosVendidos"][0]["nombreMedicamento"])
+                    
+                input("Precione enter")
+            elif Opcion2 == 3:
+                boleano=False
+    
+    elif Opcion1 == "4":
+        print("Preciona enter para terminar de salir")
+        input("")
+        Bol=False                
+#Desarrollador por Valentina Isabel Molina Lopera 
