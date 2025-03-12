@@ -26,4 +26,4 @@ Este repositorio contienen 7 elementos los cuales son:
 5.  Sigue las instrucciones en el menú para interactuar con el sistema.
 
 ## Desarrollado por
-Este proyecto fue desarrollado Valentina Isabel Molina Lopera, estudiante de CampusLand.
+Valentina Isabel Molina Lopera, CC:1.007.109.135 estudiante de CampusLands.
